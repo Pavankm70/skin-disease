@@ -28,30 +28,25 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-.stApp {
-    background:
-        radial-gradient(ellipse at 12% 0%, rgba(197, 229, 218, 0.34), transparent 34%),
-        linear-gradient(180deg, #f4f8f6 0%, #f8faf9 48%, #f2f7f5 100%);
-}
-
 .block-container {
-    padding-top: 2.4rem;
+    padding-top: 2rem;
     padding-bottom: 3.5rem;
     max-width: 1180px;
 }
 
 .main-title {
-    color: #153e38;
-    font-size: clamp(2rem, 4vw, 3rem);
+    color: inherit;
+    font-size: clamp(2rem, 4vw, 2.8rem);
     font-weight: 800;
     text-align: center;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.035em;
     line-height: 1.12;
     margin: 0.4rem 0 0.55rem;
 }
 
 .subtitle {
-    color: #52736b;
+    color: inherit;
+    opacity: 0.78;
     text-align: center;
     font-size: 1.05rem;
     margin: 0 auto 1.7rem;
@@ -59,64 +54,67 @@ st.markdown("""
 }
 
 .section-text {
-    color: #52736b;
+    color: inherit;
     font-size: 0.98rem;
     margin-bottom: 1rem;
 }
 
 .footer {
     text-align: center;
-    color: #678078;
+    color: inherit;
+    opacity: 0.72;
     font-size: 13px;
     line-height: 1.8;
     margin-top: 2.5rem;
 }
 
 [data-testid="stVerticalBlockBorderWrapper"] {
-    border: 1px solid rgba(37, 111, 94, 0.14);
+    border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
     border-radius: 18px;
-    background: rgba(255, 255, 255, 0.82);
-    box-shadow: 0 10px 28px rgba(23, 65, 55, 0.07);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 [data-testid="stMetric"] {
-    border: 1px solid rgba(37, 111, 94, 0.13);
+    border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
     border-radius: 14px;
-    background: linear-gradient(145deg, #ffffff, #f2f8f5);
     padding: 1rem 1.1rem;
-    box-shadow: 0 6px 18px rgba(23, 65, 55, 0.06);
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.07);
 }
 
 [data-testid="stFileUploader"] section {
-    border: 1.5px dashed #8db9aa;
+    border: 1.5px dashed color-mix(in srgb, currentColor 36%, transparent);
     border-radius: 16px;
-    background: rgba(237, 247, 242, 0.72);
-    transition: border-color 160ms ease, background 160ms ease;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
 [data-testid="stFileUploader"] section:hover {
-    border-color: #27836d;
-    background: #e8f4ee;
+    border-color: currentColor;
+    box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 10%, transparent);
 }
 
 .stButton > button {
     border-radius: 12px;
+    font-size: 0.98rem;
     font-weight: 650;
     transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
 .stButton > button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 7px 16px rgba(28, 112, 90, 0.18);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
 }
 
 [data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #edf5f1 0%, #e8f1ed 100%);
-    border-right: 1px solid rgba(37, 111, 94, 0.12);
+    border-right: 1px solid color-mix(in srgb, currentColor 14%, transparent);
 }
 
 [data-testid="stAlert"] {
     border-radius: 12px;
+}
+
+:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
 }
 
 </style>
