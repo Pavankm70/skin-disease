@@ -28,46 +28,95 @@ st.set_page_config(
 st.markdown("""
 <style>
 
+.stApp {
+    background:
+        radial-gradient(ellipse at 12% 0%, rgba(197, 229, 218, 0.34), transparent 34%),
+        linear-gradient(180deg, #f4f8f6 0%, #f8faf9 48%, #f2f7f5 100%);
+}
+
 .block-container {
-    padding-top: 2rem;
-    padding-bottom: 3rem;
-    max-width: 1250px;
+    padding-top: 2.4rem;
+    padding-bottom: 3.5rem;
+    max-width: 1180px;
 }
 
 .main-title {
-    font-size: 44px;
-    font-weight: 750;
+    color: #153e38;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
     text-align: center;
-    margin-bottom: 5px;
+    letter-spacing: -0.045em;
+    line-height: 1.12;
+    margin: 0.4rem 0 0.55rem;
 }
 
 .subtitle {
+    color: #52736b;
     text-align: center;
-    font-size: 18px;
-    opacity: 0.75;
-    margin-bottom: 25px;
+    font-size: 1.05rem;
+    margin: 0 auto 1.7rem;
+    max-width: 700px;
 }
 
 .section-text {
-    font-size: 16px;
-    opacity: 0.8;
-    margin-bottom: 15px;
+    color: #52736b;
+    font-size: 0.98rem;
+    margin-bottom: 1rem;
 }
 
 .footer {
     text-align: center;
-    opacity: 0.65;
+    color: #678078;
     font-size: 13px;
-    margin-top: 40px;
+    line-height: 1.8;
+    margin-top: 2.5rem;
+}
+
+[data-testid="stVerticalBlockBorderWrapper"] {
+    border: 1px solid rgba(37, 111, 94, 0.14);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 10px 28px rgba(23, 65, 55, 0.07);
+}
+
+[data-testid="stMetric"] {
+    border: 1px solid rgba(37, 111, 94, 0.13);
+    border-radius: 14px;
+    background: linear-gradient(145deg, #ffffff, #f2f8f5);
+    padding: 1rem 1.1rem;
+    box-shadow: 0 6px 18px rgba(23, 65, 55, 0.06);
+}
+
+[data-testid="stFileUploader"] section {
+    border: 1.5px dashed #8db9aa;
+    border-radius: 16px;
+    background: rgba(237, 247, 242, 0.72);
+    transition: border-color 160ms ease, background 160ms ease;
+}
+
+[data-testid="stFileUploader"] section:hover {
+    border-color: #27836d;
+    background: #e8f4ee;
 }
 
 .stButton > button {
-    border-radius: 8px;
-    font-weight: 600;
+    border-radius: 12px;
+    font-weight: 650;
+    transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
-[data-testid="stFileUploader"] {
-    padding: 10px 0px;
+.stButton > button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 7px 16px rgba(28, 112, 90, 0.18);
+}
+
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #edf5f1 0%, #e8f1ed 100%);
+    border-right: 1px solid rgba(37, 111, 94, 0.12);
+}
+
+[data-testid="stAlert"] {
+    border-radius: 12px;
 }
 
 </style>
@@ -305,6 +354,18 @@ st.info(
     "predicted lesion category."
 )
 
+status_col1, status_col2, status_col3 = st.columns(3)
+with status_col1:
+    st.badge("Image classification", icon=":material/center_focus_strong:", color="green")
+with status_col2:
+    st.badge("7 lesion categories", icon=":material/category:", color="blue")
+with status_col3:
+    st.badge(
+        "Gemini assistant ready" if gemini_client is not None else "Gemini key not configured",
+        icon=":material/auto_awesome:",
+        color="violet" if gemini_client is not None else "gray",
+    )
+
 
 st.divider()
 
@@ -328,6 +389,7 @@ uploaded_file = st.file_uploader(
     "Upload Skin Lesion Image",
     type=["jpg", "jpeg", "png"]
 )
+st.caption("Supported formats: JPG, JPEG, PNG · The image is resized for the model during analysis.")
 
 
 # ============================================================
@@ -394,7 +456,8 @@ if uploaded_file is not None:
         st.image(
             image,
             caption=uploaded_file.name,
-            width="stretch"
+            width="stretch",
+            alt="Uploaded skin lesion image preview",
         )
 
 
@@ -567,6 +630,11 @@ if uploaded_file is not None:
                         f"{confidence * 100:.2f}%"
                     )
                 )
+
+            st.progress(
+                confidence,
+                text=f"Model confidence · {confidence * 100:.1f}%",
+            )
 
 
             if confidence < 0.60:
