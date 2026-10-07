@@ -1,5 +1,4 @@
-![Uploading image.png…]()
-
+https://www.google.com/imgres?q=ham10000%20dermoscopic%20images&imgurl=https%3A%2F%2Fmedia.springernature.com%2Ffull%2Fspringer-static%2Fimage%2Fart%253A10.1038%252Fs41598-022-22644-9%2FMediaObjects%2F41598_2022_22644_Fig1_HTML.png&imgrefurl=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41598-022-22644-9&docid=mu7tlT0GIEJrPM&tbnid=VV0MeyKGSq4wDM&vet=12ahUKEwjpyLKhmaeXAxXWmuEIHcQWK1MQnPAOegQIQBAA..i&w=1653&h=1404&hcb=2&ved=2ahUKEwjpyLKhmaeXAxXWmuEIHcQWK1MQnPAOegQIQBAA
 
 
 
