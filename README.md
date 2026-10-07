@@ -1,3 +1,8 @@
+![Uploading image.png…]()
+
+
+
+
 # 🔬 DermaAI — AI-Powered Skin Lesion Classification & Educational Assistant
 
 > **AI for Healthcare | Deep Learning + Generative AI**
